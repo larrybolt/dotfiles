@@ -391,6 +391,14 @@ defaults write org.m0k.transmission WarningDonate -bool false
 # Hide the legal disclaimer
 defaults write org.m0k.transmission WarningLegal -bool false
 
+
+
+###############################################################################
+# Extra Settings                                                              #
+###############################################################################
+# Airport command, eg: use airport -s to scan for networks
+sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/sbin/airport
+
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
