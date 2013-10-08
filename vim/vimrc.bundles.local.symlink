@@ -1,0 +1,66 @@
+Bundle 'mattn/zencoding-vim'
+Bundle 'goldfeld/vim-seek'
+Bundle 'rizzatti/funcoo.vim'
+" Bundle 'rizzatti/dash.vim'
+
+" Bundle 'derekwyatt/vim-scala'
+" Bundle 'spiiph/vim-space'
+Bundle 'vim-scripts/rails.vim'
+
+" https://github.com/tpope/vim-ragtag/blob/master/doc/ragtag.txt
+Bundle 'tpope/vim-ragtag'
+
+" Bundle 'FredKSchott/CoVim'
+" Bundle 'Floobits/floobits-vim'
+
+" https://www.wakati.me/
+" Bundle 'wakatime/vim-wakatime'
+Bundle 'thoughtbot/vim-rspec'
+
+Bundle 'mhinz/vim-startify'
+let g:startify_session_dir='$HOME/.vim/sessions'
+
+" VimShell, make sure you do a make first!
+Bundle 'Shougo/vimproc.vim'
+Bundle 'Shougo/vimshell.vim'
+
+" Real tabs for vim!
+"Bundle 'bling/vim-bufferline'
+"let g:bufferline_echo=0
+"let g:bufferline_active_buffer_left = ''
+"let g:bufferline_active_buffer_right = ''
+"let g:bufferline_active_highlight = 'StatusLine'
+let g:airline#extensions#tabline#enabled = 1
+
+"Better f,F,t,T. Instead of pressing ; to find the next just type f again
+Bundle 'rhysd/clever-f.vim'
+
+"Vim Loads of colorschemes!
+Bundle 'flazz/vim-colorschemes'
+
+"https://github.com/joonty/vim-phpqa
+"https://github.com/ivalkeen/vim-ctrlp-tjump
+
+Bundle 'yonchu/accelerated-smooth-scroll'
+
+"Like f{char} but than with two chars
+Bundle 'goldfeld/vim-seek'
+
+" Switch the cursor when going to insert mode
+Bundle 'jszakmeister/vim-togglecursor'
+
+"Is it light?!
+"Bundle 'Dinduks/vim-holylight'
+
+"Areggio! Combine multiple keys to actions/words/etc
+Bundle 'kana/vim-arpeggio'
+call arpeggio#map('i', '', 0, 'fj', '<Esc>')
+
+" Multiline edit
+Bundle 'hlissner/vim-multiedit'
+
+"For writing Stuff
+Bundle 'mikewest/vimroom'
+
+let g:spf13_bundle_groups=['general', 'neocomplcache', 'programming', 'php', 'ruby', 'javascript', 'html', 'misc']
+

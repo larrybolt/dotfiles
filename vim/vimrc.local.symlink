@@ -1,0 +1,44 @@
+" Fist install http://vim.spf13.com/#install
+let g:NERDTreeWinPos = "left"
+"color molokai
+set bg=dark
+
+:let NERDTreeQuitOnOpen=0
+let t_Co=256
+set autochdir
+let NERDTreeChDirMode=2
+let g:nerdtree_tabs_autoclose=0
+
+if has("gui_running")
+    set guifont=Ubuntu_Mono_for_Powerline:h15
+    set guioptions-=r
+    set guioptions-=L
+    set lines=999 columns=999
+    set fullscreen
+    set fuoptions=maxvert,maxhorz
+endif
+" Autosave files when VIM looses focus"
+:au FocusLost * silent! wa
+
+" Autosave sessions
+autocmd VimLeave * SessionSaveAs Last\ Session
+
+" Fold using indent, and on open don't show folds
+set foldmethod=indent
+set foldlevel=99
+set nofoldenable
+let g:DisableAutoPHPFolding = 1 " disable PIV's folding
+
+
+map <Leader>t :call RunCurrentSpecFile()<CR>
+
+" Vim-numbers, toggle numers type or on/off
+nnoremap <F3> :NumbersToggle<CR>
+nnoremap <F4> :NumbersOnOff<CR>
+
+nnoremap <silent> <leader>gh :GitGutterLineHighlightsToggle<CR>
+nnoremap <silent> <leader>vs :set noautochdir<CR>:VimShellCurrentDir<CR>
+
+"Commands to quickly open interactly php or irb in a VimShell
+command -nargs=* -complete=file Php VimShellInteractive php<bang> <args>
+command -nargs=* -complete=file Irb VimShellInteractive irb<bang> <args>
