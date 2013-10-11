@@ -1,12 +1,12 @@
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+DOTS=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
-ZSH_THEME="kolo"
+#DOTS_THEME="robbyrussell"
+DOTS_THEME="kolo"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -19,7 +19,7 @@ ZSH_THEME="kolo"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
+# export UPDATE_DOTS_DAYS=13
 
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
@@ -35,7 +35,7 @@ ZSH_THEME="kolo"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git git-extras autojump brew cloudapp rails3 battery git-flow jump)
 
-source $ZSH/oh-my-zsh.sh
+source $DOTS/oh-my-zsh.sh
 
 # Customize to your needs...
 unsetopt correct

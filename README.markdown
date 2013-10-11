@@ -1,4 +1,4 @@
-# holman does dotfiles
+# Larrybolt does dotfiles, based on @holman
 
 ## dotfiles
 

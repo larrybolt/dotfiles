@@ -10,11 +10,12 @@ let NERDTreeChDirMode=2
 let g:nerdtree_tabs_autoclose=0
 
 if has("gui_running")
-    set guifont=Ubuntu_Mono_for_Powerline:h15
+    set guifont=Sauce_Code_Powerline:h15
+    "set guifont=Anonymice_Powerline:h15
     set guioptions-=r
     set guioptions-=L
     set lines=999 columns=999
-    set fullscreen
+    "set fullscreen
     set fuoptions=maxvert,maxhorz
 endif
 " Autosave files when VIM looses focus"
@@ -42,3 +43,6 @@ nnoremap <silent> <leader>vs :set noautochdir<CR>:VimShellCurrentDir<CR>
 "Commands to quickly open interactly php or irb in a VimShell
 command -nargs=* -complete=file Php VimShellInteractive php<bang> <args>
 command -nargs=* -complete=file Irb VimShellInteractive irb<bang> <args>
+
+"Make god damn copy/paste work!
+set clipboard=unnamed

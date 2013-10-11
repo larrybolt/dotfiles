@@ -1,0 +1,31 @@
+#ack is a tool like grep, designed for programmers with large trees of heterogeneous source code
+
+#to install ack, see http://betterthangrep.com/
+#using brew: brew install ack
+#to use ack, launch terminal (mac osx) and type 'ack <some_keywords>'
+#ack will search all files in the current directory & sub-directories
+
+#here's how I have my config file setup. this file is located on mac osx here
+# ~/.ackrc
+
+# Always sort the files
+--sort−files
+
+# Always color, even if piping to a another program
+--color
+
+# Use "less −r" as my pager
+# --pager
+# less -r
+
+--ignore-dir=.git
+--ignore-dir=node_modules/
+
+#make sure ack knows how to search common filetypes used in rails projects
+--type-add=css=scss
+--type-add=ruby=.haml,.rselm,.feature,.ru,.lock
+--type-set=coffeescript=.coffee
+--type-set=coffee=.coffee
+
+#or just search everything!
+-a
