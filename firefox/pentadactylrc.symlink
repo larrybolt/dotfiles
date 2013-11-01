@@ -1,0 +1,273 @@
+" Taken from github.com/fncll/dotfiles
+" TODO: look here:
+" https://github.com/kylpo/dot-files/blob/master/.pentadactylrc
+" @GENERAL OPERATIONS {{{1
+
+" follow hints (links) immediately when matched
+set followhints=0
+
+" limit number of items displayed on commandline at once (default is 20)
+set maxitems=40
+
+" limit number of (error and info) messages stored in history (default is 100)
+set messages=500
+
+" number of lines to scroll with <C-d>/<C-u> (0 means it scrolls half the window at a time)
+set scroll=0
+
+" Maximum number of Ex commands and find patterns to store in the command-line history
+set history=10000
+
+" show URLs of links (on hover or other focus) in command line
+set showstatuslinks='command'
+
+" hide close buttons on tabs (less mouse temptation)
+set! browser.tabs.closeButtons=2
+
+" keep hints on home row
+set hintkeys=asdfghjkl
+
+" use (g)vim as editor (see C-i) 
+set editor='/usr/local/bin/mvim -g -f +<line> +"sil! call cursor(0, <column>)" <file>'
+
+" }}}
+
+" @APPEARANCE {{{1
+
+" color and formatting of hints (`f`)
+highlight Hint font:bold 11px "Droid Sans Mono", monospace !important; color: white; background:#744E7A !important; padding 1px 3px; text-transform: uppercase;
+
+highlight HintElem background: #744E7A !important;
+
+highlight HintActive background: #FF9999 !important;
+
+" color and formatting of status line
+highlight StatusLine font: 13px "Droid Sans Mono", monospace !important; background: #0C0094; color: #F2FF00; font: 12px "Droid Sans Mono", monospace !important;
+
+highlight StatusLineBroken font: 13px "Droid Sans Mono", monospace !important; background: #0C0094; color: #F2FF00; font: 12px "Droid Sans Mono", monospace !important;
+
+highlight StatusLineExtended font: 13px "Droid Sans Mono", monospace !important; background: #0C0094; color: #F2FF00; font: 12px "Droid Sans Mono", monospace !important;
+
+highlight StatusLineSecure font: 13px "Droid Sans Mono", monospace !important; background: #0C0094; color: #F2FF00; font: 12px "Droid Sans Mono", monospace !important;
+
+" Command Line formatting
+hi CmdLine padding: 8px 0 8px 0; font:normal 13px "Droid Sans Mono", monospace !important; color: white !important; background: #0C0094 !important;
+
+hi CmdInput color: white !important; background: #0C0094 !important;
+
+" hi CmdCmdLine font:normal 13px "Droid Sans Mono", monospace !important;
+
+" Completion (listing) formatting 
+hi CompTitle font:normal 13px "Droid Sans Mono", monospace !important; color: white; background: #4760FF;
+hi CompItem font:normal 13px "Droid Sans Mono", monospace !important; color: white; background: #4760FF;
+hi CompItem:nth-child(2n+1) font:normal 13px "Droid Sans Mono", monospace !important; color: white !important; background: #697DFF;
+hi CompDesc color: #F2F2F2 !important;
+hi CompTitleSep background: #000396 !important; height: 1px !important;
+hi CompItem[selected] background: #0c0094 !important;
+
+" URLs and keywords in listings (history, etc)
+hi Keyword color: yellow !important; font-weight: bold !important; font-size: 15px !important;
+hi URL color: #DEDEDE !important;
+
+" What, I don't already know I'm running Pentadactyl?
+set titlestring=Mozilla\ Firefox
+
+" Don't let the dastardly `d` key delete the last tab (and close the window)
+set! browser.tabs.closeWindowWithLastTab=false
+
+" }}}
+
+" @SEARCH OPTIONS {{{1
+
+" show highlights when searching
+set hlfind
+
+" search incrementally
+set incfind
+
+" ignore case in searches unless caps are entered in search term
+set findcase=smart
+
+" }}}
+
+" @COMPLETIONS {{{1
+" completions s=search l=location bar h=history b=bookmarks
+set complete=slb
+
+" if one match, show it; if more list all matches until longest common
+set wildmode=list:full
+" }}}
+
+" @KEYMAPS {{{1
+" Pentadactyl folks think <leader> is silly, I don't. So this lets me
+" map the way I like to
+map , <Leader>
+
+map <Leader>f f
+
+" jump to previous and next tabs - matches LH for history movement
+map l gt
+map h gT
+
+" scroll up and down by 15 lines at a time - less stretching than C-d/u etc.
+nmap -builtin j 15j
+nmap -builtin k 15k
+
+" Quick way to turn off search highlighting after search
+map <Leader><Space> :noh<cr>
+
+" Yank page URL
+"map -modes=n,v Y -ex -s :y buffer.title
+
+"command copy-title -javascript
+      "\ let buffertitle = buffer.title;
+      "\ dactyl.clipboardWrite(buffer.title);
+
+javascript <<EOF
+function copytitle() {
+  var buffertitle = buffer.title;
+  dactyl.clipboardWrite(buffertitle, true);
+  }
+EOF
+
+map -g user Y -s -js copytitle()
+
+" Make up/dn work in completion lists
+cmap -builtin <up> <s-tab>
+cmap -builtin <c-up> <up>
+cmap -builtin <down> <tab>
+cmap -builtin <c-down> <down>
+
+" I use leader combinations for things that change or USE the current page
+" If there is a menu item, I can access via the menu name(s)
+map <Leader>c :emenu Tools.Clearly<CR>
+
+" Mappings like this rely on having a bookmark set with the appopriate keyword
+command! readability open read
+map -g user <Leader>r -ex readability
+
+command! diigosave open diigo
+map -g user <Leader>d -ex diigosave
+
+command! clibsave open clib
+map -g user <Leader>b -ex clibsave
+
+command! pocketit open pocket
+map -g user <Leader>p -ex pocketit
+
+command! scoopit open sit
+map -g user <Leader>s -ex scoopit
+
+command! bufferit open buffer
+map -g user <Leader>B -ex bufferit
+
+command! marseditit open marsedit
+map -g user <Leader>m -ex marseditit
+
+" }}}
+
+" @QUICKMARKS {{{1
+
+" use this in normal mode with `go x` where x=qmark
+" I use these for going TO sites
+
+silent qmark 1 file:///Users/chris/Dropbox/manuals-guides-refs/pentadactyl-help/index.html
+silent qmark b http://clinki.es/
+silent qmark d https://www.diigo.com/user/chrisl
+silent qmark c http://cpb.passiontask.com/
+silent qmark C http://cpb.passiontask.com/wp-admin/
+silent qmark f http://facebook.com/
+silent qmark F http://chrislott.org/fever/
+silent qmark g http://geek.chrislott.org/
+silent qmark G http://geek.chrislott.org/wp-admin/
+silent qmark h https://hootsuite.com/dashboard
+silent qmark k http://katannuta.passiontask.com/
+silent qmark K http://www.tumblr.com/blog/katannuta/new/text
+silent qmark m http://mail.chrislott.org/
+silent qmark p http://blog.passiontask.com/
+silent qmark P http://blog.passiontask.com/wp-admin/
+silent qmark r http://chrislott.org/
+silent qmark R http://chrislott.org/wp-admin/
+silent qmark s http://www.scoop.it/u/chris-lott
+silent qmark t http://toodledo.com/
+
+
+" }}}
+
+" @SITE SPECIFIC {{{1
+" Make Gmail usable: don't take the focus away when moving
+set strictfocus='google.com':laissez-faire,*:moderate,'chrome:*':laissez-faire,*:moderate
+
+" And pass through some useful navigation and jump keys in gmail
+set passkeys+=mail\.google\.com:jkv<CR>rau#T/<space><S-space>?,gi,gl,*u,*i,*n,gi,gc,gl
+
+" pass some keys in toodledo
+set passkeys+=www\.toodledo\.com:fnrmdpe123456789?
+
+
+" Facebook is generally annoying with Pentadactyl
+:autocmd LocationChange facebook.com :normal! <C-z>
+
+
+
+
+" }}}
+
+" @TESTING {{{1
+
+" I'm so used to using the 'u' key to go "up" to the previous mailbox/search
+" that I like to use it for browsing as "back" - m just makes sense as a pair
+nmap -builtin u H
+nmap -builtin m L
+
+" yank to system clipboard
+:js editor.defaultRegister="+"
+"highlight Boolean color: #AE81FF;
+"highlight border:0 background: #272822;
+"highlight Comment color: #75715E;
+"highlight -link=FontFixed,Normal Comp margin: 0; border-top: 0px;
+"highlight CompItem background: #272822;
+"highlight CompItem:nth-child(2n+1) background: #232526;
+"highlight CompItem[selected] background: #3E3D32;
+"highlight CompTitle color: #232526; background: #BCBCBC; font-weight: bold;
+"highlight CompTitleSep height: 1px; background: -moz-linear-gradient(60dg, #455354, #F92672);
+"highlight Disabled color: #960050;
+"highlight ErrorMsg color: #F92672 !important; background: #232526 !important; font-weight: bold !important;
+"highlight FontCode font-size: 9pt; font-family: "Consolas", "Monaco";
+"highlight Function color: #A6E22E;
+"highlight Hint font: bold 10px "Droid Sans Mono", monospace !important; margin: -.2ex; padding: 2px; outline: 1px solid rgba(0, 0, 0, .5); background: rgba(255, 248, 231, .8); color: #A6E22E !important; font-family: Sans; font-size: 12px; font-weight: bold; border: 0 none; background-color: rgba(35, 37, 38, .8) !important;
+"highlight Hint::after content: attr(number);
+"highlight HintActive background-color: #66D9EF !important; color: #F8F8F2 !important;
+"highlight HintElem background-color: inherit !important; color: black !important; -moz-box-shadow: 0px 0px 2px 2px rgba(102, 217, 239, .5);
+"highlight HintImage opacity: .5;
+"highlight Indicator color: #66D9EF; width: 1.5em; text-align: center;
+"highlight InfoMsg color: #960050 !important; background: #232526 !important;
+"highlight Key font-weight: bold;
+"highlight Keyword color: #F92672;
+"highlight LineNr color: orange !important; background: #232526 !important;
+"highlight ModeMsg color: #E6DB74; background: #455354 !important;
+"highlight MoreMsg color: #E6DB74; background: #455354 !important;
+"highlight NonText color: #BCBCBC !important; background: #232526 !important;
+"highlight Normal color: #F8F8F2 !important; background: #272822 !important; font-weight: normal !important; font-size: 9pt;
+"highlight Null color: #AE81FF; font-weight: bold;
+"highlight Number color: #AE81FF;
+"highlight Object color: #66D9EF;
+"highlight Question color: #66D9EF !important; background: #232526 !important; font-weight: bold !important;
+"highlight StatusLineBroken color: #F92672 !important; background: #232526 !important;
+"highlight StatusLineExtended color: #A6E22E !important; background: #232526 !important;
+"highlight StatusLineNormal color: #F8F8F2 !important; background: #232526 !important;
+"highlight StatusLineSecure color: #66D9EF !important; background: #232526 !important;
+"highlight StatusModeMsg color: #E6DB74; background: #455354 !important; padding-right: 1em;
+"highlight StatusQuestion color: #F92672 !important; background: transparent !important;
+"highlight StatusWarningMsg: color: #FD971F !important;
+"highlight String color: #E6DB74; white-space: pre;
+"highlight Tag color: #66D9EF;
+"highlight Title color: #F92672; font-weight: bold;
+"highlight URL text-decoration: none; color: #AE81FF; background: inherit;
+"highlight URLExtra color: #BCBCBC;
+"highlight WarningMsg color: #F8F8F2 !important; background: #FD971F !important;
+" }}}
+
+" vim: ft=vim fdm=marker:
+
+:tbs Navigation Toolbar

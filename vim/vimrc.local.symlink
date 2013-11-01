@@ -46,3 +46,9 @@ command -nargs=* -complete=file Irb VimShellInteractive irb<bang> <args>
 
 "Make god damn copy/paste work!
 set clipboard=unnamed
+
+" Fix number bug
+set number
+
+let g:AutoClosePairs = "{} \""
+let g:AutoClosePairs_del = "() []"

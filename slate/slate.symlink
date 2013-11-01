@@ -11,25 +11,45 @@ config windowHintsIgnoreHiddenWindows false
 config windowHintsDuration 2
 config windowHintsSpread true
 # config windowHintsOrder persist
- 
+
 # Monitor Aliases
 # alias mon-laptop      0
 # alias mon-samsung    1
- 
+
 # Misc Aliases
 alias showHintsLeftHand hint ASDFGQWERT
 alias showNormalHint hint ASDFGHJKLZXCVBNMQWERTYUIOP
 alias browser 'Google Chrome'
 alias editor 'MacVim'
- 
+
+# Screen expressions visualisation
+#
+# screenOriginX/Y ---------------------- X ------------------------ screenSizeX
+# |                                                                           |
+# |                windowTopLeftX/Y ------------- windowSizeX                 |
+# |                |                                        |                 |
+# Y                |                   WINDOW               |                 |
+# |                |                                        |                 |
+# |                windowSizeY ------------------------------                 |
+# |                                                                           |
+# screenSizeY -----------------------------------------------------------------
+#
+# Move Operations
+# `move topLeftX;topLeftY            sizeX;sizeY         [screen]`
+
 # Abstract positions
 alias full          move screenOriginX;screenOriginY                  screenSizeX;screenSizeY
+
 alias lefthalf      move screenOriginX;screenOriginY                  screenSizeX/2;screenSizeY
+alias leftmost      move screenOriginX;screenOriginY                  screenSizeX*0.6;screenSizeY
+alias leftless      move screenOriginX;screenOriginY                  screenSizeX*0.4;screenSizeY
+
 alias righthalf     move screenOriginX+screenSizeX/2;screenOriginY    screenSizeX/2;screenSizeY
 alias rightmost     move screenOriginX+screenSizeX*0.4;screenOriginY  screenSizeX*0.6;screenSizeY
 alias rightless     move screenOriginX+screenSizeX*0.6;screenOriginY  screenSizeX*0.4;screenSizeY
-alias leftmost      move screenOriginX;screenOriginY                  screenSizeX*0.6;screenSizeY
-alias leftless      move screenOriginX;screenOriginY                  screenSizeX*0.4;screenSizeY
+
+alias fulltop       move screenOriginX;screenOriginY    screenSizeX;screenSizeY/2
+
 # Concrete positions
 # alias 1-full        move screenOriginX;screenOriginY screenSizeX;screenSizeY         ${mon-laptop}
 # alias 1-left        move screenOriginX;screenOriginY screenSizeX/2;screenSizeY         ${mon-laptop}
@@ -38,7 +58,7 @@ alias leftless      move screenOriginX;screenOriginY                  screenSize
 # alias 2-right       move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY         ${mon-samsung}
 # alias 2-righttop    move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY/2       ${mon-samsung}
 # alias 2-rightbottom move screenOriginX+screenSizeX/2;screenOriginY+screenSizeY/2    screenSizeX/2;screenSizeY/2       ${mon-samsung}
- 
+
 # 2 Monitor layout
 # layout 2monitors 'iTerm':MAIN_FIRST                       ${2-rightbottom} | ${1-left}
 # layout 2monitors 'Safari':REPEAT                          ${1-full}
@@ -50,7 +70,7 @@ alias leftless      move screenOriginX;screenOriginY                  screenSize
 # layout 2monitors 'Xcode':REPEAT                           ${1-full}
 # layout 2monitors 'Eclipse':REPEAT                         ${1-full}
 # layout 2monitors 'iTunes':REPEAT                          ${1-full}
- 
+
 # 1 Monitor layout
 # layout 1monitor 'iTerm':MAIN_FIRST                       ${1-right}
 # layout 1monitor 'Sublime Text 2':MAIN_FIRST              ${1-left}
@@ -62,11 +82,11 @@ alias leftless      move screenOriginX;screenOriginY                  screenSize
 # layout 1monitor 'Xcode':REPEAT                           ${1-full}
 # layout 1monitor 'Eclipse':REPEAT                         ${1-full}
 # layout 1monitor 'iTunes':REPEAT                          ${1-full}
- 
+
 # Default Layouts
 # default 2monitors resolutions:${mon-laptop};${mon-samsung};
 # default 1monitor  resolutions:${mon-laptop}
- 
+
 # Numpad location Bindings
 # bind pad0 ${showHintsLeftHand}
 # bind pad1 ${leftless}
@@ -83,46 +103,52 @@ alias leftless      move screenOriginX;screenOriginY                  screenSize
 # bind pad. focus behind
 # bind pad* layout 2monitors
 # bind pad/ layout 1monitor
- 
- 
+
+
 # ======================================
 # The HYPER key
 # ======================================
- 
+
 alias hyper ctrl;shift;alt;cmd
- 
+
 # Hints Bindings
 bind esc:${hyper}  ${showNormalHint}
 
 # Location bindings
-bind s:${hyper} ${lefthalf}
+bind s:${hyper} chain ${lefthalf} | ${leftmost} | ${leftless}
 bind d:${hyper} ${full}
-bind f:${hyper} ${righthalf}
+bind f:${hyper} chain ${righthalf} | ${rightmost} | ${rightless}
 bind a:${hyper} throw next
- 
+
 # Resize Bindings
-#bind r:${hyper} ${leftmost}
-#bind w:${hyper} ${rightmost}
-bind e:${hyper} chain push up | push right | push down | push left
- 
+bind r:${hyper} ${leftless}
+bind w:${hyper} ${rightless}
+bind e:${hyper} ${fulltop}
+
+bind [:${hyper}  chain throw left | ${full}
+bind ]:${hyper}  chain throw right | ${full}
+
+bind g:${hyper} grid padding:5 0:6,2 1:8,3
+
 # Focus Bindings
 bind l:${hyper}    focus right
 bind h:${hyper}     focus left
 bind k:${hyper}       focus up
 bind j:${hyper}     focus down
- 
+
 # App bindings
 bind c:${hyper} focus ${browser}
 bind v:${hyper} focus ${editor}
-# bind x:${hyper} focus 'Xcode'
+#bind x:${hyper} chain focus 'Adium' | focus 'mysms'
+bind x:${hyper} focus 'Adium'
 # bind g:${hyper} focus 'GitHub'
-# bind m:${hyper} focus 'Mail'
-# bind i:${hyper} focus 'iTerm'
-# bind o:${hyper} focus 'Finder'
+bind m:${hyper} focus 'Mail'
+bind t:${hyper} focus 'iTerm'
+bind o:${hyper} focus 'Finder'
 
 # Extra bindings
 bind u:${hyper} undo
+bind delete:${hyper} relaunch
 
 # A better Application Switcher
 bind tab:cmd switch
-bind g:${hyper} switch

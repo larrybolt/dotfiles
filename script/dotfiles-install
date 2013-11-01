@@ -4,7 +4,11 @@
 
 set -e
 
-cd "$(dirname $)"/..
+DOTS="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/.. && pwd )"
+cd $DOTS;
+
+# before running any install scripts, make sure homebrew is installed
+sh homebrew/install-packages.sh
 
 # find the installers and run them iteratively
 find . -name install.sh | while read installer ; do sh -c "${installer}" ; done

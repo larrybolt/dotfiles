@@ -1,6 +1,12 @@
-# Larrybolt does dotfiles, based on @holman
+# Larrybolt does dotfiles
 
 ## dotfiles
+
+My dotfiles is where I store mainly two things:
+
+- My personalizations and configurations (for both terminal-based tools as Mac Apps)
+- Scripts that make setting up my macbook easier after reinstalls.
+
 
 Your dotfiles are how you personalize your system. These are mine.
 

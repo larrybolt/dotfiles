@@ -15,14 +15,15 @@ Bundle 'tpope/vim-ragtag'
 
 " https://www.wakati.me/
 " Bundle 'wakatime/vim-wakatime'
+Bundle 'wakatime/vim-wakatime'
 Bundle 'thoughtbot/vim-rspec'
 
 Bundle 'mhinz/vim-startify'
 let g:startify_session_dir='$HOME/.vim/sessions'
 
 " VimShell, make sure you do a make first!
-Bundle 'Shougo/vimproc.vim'
-Bundle 'Shougo/vimshell.vim'
+"Bundle 'Shougo/vimproc.vim'
+"Bundle 'Shougo/vimshell.vim'
 
 " Real tabs for vim!
 "Bundle 'bling/vim-bufferline'
@@ -60,7 +61,16 @@ call arpeggio#map('i', '', 0, 'fj', '<Esc>')
 Bundle 'hlissner/vim-multiedit'
 
 "For writing Stuff
-Bundle 'mikewest/vimroom'
+"Bundle 'mikewest/vimroom'
+
+"For debugging php, ruby, nodejs.. etc
+"Bundle 'joonty/vdebug'
+
+"Project specific vimrc
+Bundle 'embear/vim-localvimrc'
+
+"Symfony plugin
+Bundle 'docteurklein/vim-symfony'
 
 let g:spf13_bundle_groups=['general', 'neocomplcache', 'programming', 'php', 'ruby', 'javascript', 'html', 'misc']
 
