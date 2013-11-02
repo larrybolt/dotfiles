@@ -1,2 +1,4 @@
 # nodejs is already installed by brew, look at $DOTS/homebrew/packages/nodejs.sh
-git clone https://github.com/creationix/nvm.git $HOME/.nvm
+if [ ! -e "$HOME/.nvm" ]; then
+	git clone https://github.com/creationix/nvm.git $HOME/.nvm
+fi

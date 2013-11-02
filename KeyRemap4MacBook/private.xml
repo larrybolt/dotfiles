@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<root>
+<item>
+    <name>Remap Right Option (aka. Alt) to Hyper</name>
+    <appendix>OS X doesn't have a Hyper. This maps Right Option to Control + Shift + Option + Command.</appendix>
+
+    <identifier>command_r_and_l_to_hyper</identifier>
+
+    <autogen>
+        __KeyToKey__
+        KeyCode::COMMAND_R,
+
+        KeyCode::COMMAND_L,
+        ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L
+    </autogen>
+</item>
+</root>

@@ -410,7 +410,7 @@ sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
 ###############################################################################
 
 for app in "Address Book" "Calendar" "Contacts" "Dashboard" "Dock" "Finder" \
-	"Mail" "Safari" "SizeUp" "SystemUIServer" "Terminal" "Transmission" \
+	"Mail" "Safari" "SizeUp" "SystemUIServer" "Transmission" \
 	"Twitter" "iCal" "iTunes"; do
 	killall "$app" > /dev/null 2>&1
 done
