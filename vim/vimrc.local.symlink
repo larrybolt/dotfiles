@@ -3,7 +3,7 @@ let g:NERDTreeWinPos = "left"
 "color molokai
 set bg=dark
 
-:let NERDTreeQuitOnOpen=0
+let NERDTreeQuitOnOpen=0
 let t_Co=256
 set autochdir
 let NERDTreeChDirMode=2
@@ -19,7 +19,7 @@ if has("gui_running")
     set fuoptions=maxvert,maxhorz
 endif
 " Autosave files when VIM looses focus"
-:au FocusLost * silent! wa
+au FocusLost * silent! wa
 
 " Autosave sessions
 autocmd VimLeave * SessionSaveAs Last\ Session
@@ -50,5 +50,13 @@ set clipboard=unnamed
 " Fix number bug
 set number
 
-let g:AutoClosePairs = "{} \""
-let g:AutoClosePairs_del = "() []"
+let NERDTreeIgnore=['\.DS_Store$', '\.vim$']
+
+UnBundle 'AutoClose'
+UnBundle 'spf13/vim-autoclose'
+"let g:spf13_no_autochdir = 1
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
+nnoremap  ;  :
+"nnoremap  :  ;
+nnoremap <Leader>e :NERDTreeToggle<CR>

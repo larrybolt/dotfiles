@@ -139,8 +139,8 @@ bind j:${hyper}     focus down
 # App bindings
 bind c:${hyper} focus ${browser}
 bind v:${hyper} focus ${editor}
-#bind x:${hyper} chain focus 'Adium' | focus 'mysms'
-bind x:${hyper} focus 'Adium'
+#bind x:${hyper} chain focus 'Skype' | focus 'mysms'
+bind x:${hyper} focus 'Skype'
 # bind g:${hyper} focus 'GitHub'
 bind m:${hyper} focus 'Mail'
 bind t:${hyper} focus 'iTerm'

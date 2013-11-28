@@ -1,4 +1,7 @@
-Bundle 'mattn/zencoding-vim'
+Bundle 'mattn/emmet-vim'
+let g:user_emmet_install_global = 0
+autocmd FileType html,css,php EmmetInstall
+
 Bundle 'goldfeld/vim-seek'
 Bundle 'rizzatti/funcoo.vim'
 " Bundle 'rizzatti/dash.vim'
@@ -26,12 +29,15 @@ let g:startify_session_dir='$HOME/.vim/sessions'
 "Bundle 'Shougo/vimshell.vim'
 
 " Real tabs for vim!
-"Bundle 'bling/vim-bufferline'
-"let g:bufferline_echo=0
-"let g:bufferline_active_buffer_left = ''
-"let g:bufferline_active_buffer_right = ''
+Bundle 'bling/vim-bufferline'
+let g:bufferline_echo=0
+let g:bufferline_active_buffer_left = '['
+let g:bufferline_active_buffer_right = ']'
+let g:bufferline_modified = '+'
+let g:bufferline_show_bufnr = 1
+
 "let g:bufferline_active_highlight = 'StatusLine'
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 
 "Better f,F,t,T. Instead of pressing ; to find the next just type f again
 Bundle 'rhysd/clever-f.vim'
@@ -69,8 +75,31 @@ Bundle 'hlissner/vim-multiedit'
 "Project specific vimrc
 Bundle 'embear/vim-localvimrc'
 
+"Markdown VIM Mode
+Bundle 'plasticboy/vim-markdown'
+
 "Symfony plugin
 Bundle 'docteurklein/vim-symfony'
+
+"CoSCO plugin, Comma's and Semicollons
+Bundle 'lfilho/cosco.vim'
+autocmd FileType javascript,css,php nmap <silent> ,; :call cosco#commaOrSemiColon()<CR>
+autocmd FileType javascript,css,php inoremap <silent> ,; <ESC>:call cosco#commaOrSemiColon()"<CR>a"
+
+"Vim argumentative
+Bundle 'PeterRincker/vim-argumentative'
+nmap [; <Plug>Argumentative_Prev
+nmap ]; <Plug>Argumentative_Next
+xmap [; <Plug>Argumentative_XPrev
+xmap ]; <Plug>Argumentative_XNext
+nmap <; <Plug>Argumentative_MoveLeft
+nmap >; <Plug>Argumentative_MoveRight
+xmap i; <Plug>Argumentative_InnerTextObject
+xmap a; <Plug>Argumentative_OuterTextObject
+omap i; <Plug>Argumentative_OpPendingInnerTextObject
+omap a; <Plug>Argumentative_OpPendingOuterTextObject
+
+Bundle 'Valloric/YouCompleteMe'
 
 let g:spf13_bundle_groups=['general', 'neocomplcache', 'programming', 'php', 'ruby', 'javascript', 'html', 'misc']
 

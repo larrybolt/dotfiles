@@ -41,8 +41,11 @@ installcask cloudapp
 installcask adium
 # TODO: add a way to install adium plugins as well and set settings
 installcask vox
-#installcask dash #stupid app store purchase!
+installcask dash
 installcask controlplane
 installcask quick-cast
 installcask bettertouchtool
 installcask chameleon-ssd-optimizer
+
+# Update Alfred links
+brew cask alfred link

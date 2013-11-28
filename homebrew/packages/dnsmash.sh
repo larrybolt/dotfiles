@@ -11,8 +11,8 @@ if [ $? -eq 1 ]; then
 	# Then to load dnsmasq now:
 	sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
 	sudo mkdir -p /etc/resolver/
-	echo -e "nameserver 127.0.0.1\ndomain dev" | sudo tee -a /etc/resolver/dev
-	echo -e "nameserver 127.0.0.1\ndomain ."   | sudo tee -a /etc/resolver/offline
+	echo "nameserver 127.0.0.1\ndomain dev" | sudo tee -a /etc/resolver/dev
+	echo "nameserver 127.0.0.1\ndomain ."   | sudo tee -a /etc/resolver/offline
 else
 	echo "dnsmasq is already installed"
 fi

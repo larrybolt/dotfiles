@@ -15,3 +15,4 @@
     #command rbenv "$command" "$@";;
   #esac
 #}
+eval "$(rbenv init -)"
