@@ -1,17 +1,34 @@
 <?xml version="1.0"?>
 <root>
-<item>
-    <name>Remap Right Option (aka. Alt) to Hyper</name>
-    <appendix>OS X doesn't have a Hyper. This maps Right Option to Control + Shift + Option + Command.</appendix>
+    <appdef>
+        <appname>EMACS</appname>
+        <equal>org.gnu.Aquamacs</equal>
+    </appdef>
+    <item>
+        <name>Remap TAB to Hyper.</name>
+        <appendix>OS X doesn't have a Hyper. This maps Tab to Control + Shift + Option + Command unless pressed alone.</appendix>
 
-    <identifier>command_r_and_l_to_hyper</identifier>
+        <identifier>private.tab_to_hyper_tab</identifier>
 
-    <autogen>
-        __KeyToKey__
-        KeyCode::COMMAND_R,
+        <autogen>
+            __KeyOverlaidModifier__
+            KeyCode::TAB,
 
-        KeyCode::COMMAND_L,
-        ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L
-    </autogen>
-</item>
+            KeyCode::COMMAND_L,
+            ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L,
+            KeyCode::TAB
+        </autogen>
+    </item>
+    <item>
+        <name>Remap Alt to Control in Emacs</name>
+        <appendix>Fuck you non-standard Apple Keyboard layout, map Right Alt to Control in Emacs</appendix>
+
+        <identifier>private.alt_to_control</identifier>
+        <only>EMACS</only>
+        <autogen>
+            __KeyToKey__
+            KeyCode::OPTION_R,
+            KeyCode::CONTROL_R
+        </autogen>
+    </item>
 </root>
