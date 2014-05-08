@@ -1,0 +1,5 @@
+export ANSIBLE_PATH="$HOME/web/clusters-servers/mycluster"
+alias a="ansible -i $ANSIBLE_PATH/hosts"
+alias ap="ansible-playbook -i $ANSIBLE_PATH/hosts"
+alias atest="ansible -i $ANSIBLE_PATH/vagrant/hosts --private-key=~/.vagrant.d/insecure_private_key -u vagrant -s"
+alias aptest="ansible-playbook -i $ANSIBLE_PATH/vagrant/hosts --private-key=~/.vagrant.d/insecure_private_key -u vagrant -s"
