@@ -4,3 +4,4 @@ alias networksound="sudo tcpdump -n -w- | play --buffer 10000 -r 8000 -b 8 -c 1 
 
 scp(){ if [[ "$@" =~ : ]];then /usr/bin/scp $@ ; else echo 'You forgot the colon dumbass!'; fi;} # Catch a common scp mistake.
 
+alias cow="curl -s www.climagic\.org/ascii/explodingcow-animation-1995.gz |zcat |pv -L2400 -q"

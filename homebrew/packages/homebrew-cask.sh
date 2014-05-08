@@ -46,6 +46,14 @@ installcask controlplane
 installcask quick-cast
 installcask bettertouchtool
 installcask chameleon-ssd-optimizer
+installcask anki
+installcask flux
+installcask geektool
+installcask cakebrew
+
+installcask multibit
+installcask multidoge
+
 
 # Update Alfred links
 brew cask alfred link

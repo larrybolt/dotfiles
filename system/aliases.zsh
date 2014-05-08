@@ -8,3 +8,7 @@ then
   alias ll="gls -l --color"
   alias la='gls -A --color'
 fi
+alias cppc="clang++ -std=c++11 -stdlib=libc++ -Weverything"
+alias m="man tldr"
+
+alias bookmarks="mvim ~/web/Projects/Blog/octopress-blog/source/_posts/2014-02-06-bookmarks.markdown"

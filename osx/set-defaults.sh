@@ -13,10 +13,11 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ###############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
-sudo scutil --set ComputerName "MBPM"
-sudo scutil --set HostName "MBPM"
-sudo scutil --set LocalHostName "MBPM"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "MBPM"
+hostname="MBPM"
+sudo scutil --set ComputerName "$hostname"
+sudo scutil --set HostName "$hostname"
+sudo scutil --set LocalHostName "$hostname"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$hostname"
 
 # Set standby delay to 24 hours (default is 1 hour)
 sudo pmset -a standbydelay 86400
@@ -104,7 +105,7 @@ systemsetup -setcomputersleep Off > /dev/null
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 
 # Disable Notification Center and remove the menu bar icon
-#launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
+launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
 
 ###############################################################################
 # SSD-specific tweaks                                                         #
@@ -150,7 +151,7 @@ defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 #defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
 
 # Disable “natural” (Lion-style) scrolling
-#defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
 # Increase sound quality for Bluetooth headphones/headsets
 #defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
@@ -260,7 +261,7 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 defaults write NSGlobalDomain com.apple.springing.enabled -bool true
 
 # Remove the spring loading delay for directories
-defaults write NSGlobalDomain com.apple.springing.delay -float 0
+#defaults write NSGlobalDomain com.apple.springing.delay -float 0
 
 # Avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
@@ -331,8 +332,8 @@ defaults write com.apple.dock mouse-over-hilite-stack -bool true
 # Set the icon size of Dock items to 36 pixels
 defaults write com.apple.dock tilesize -int 36
 
-# Minimize windows into their application’s icon
-defaults write com.apple.dock minimize-to-application -bool true
+# Don't Minimize windows into their application’s icon
+#defaults write com.apple.dock minimize-to-application -bool false
 
 # Enable spring loading for all Dock items
 defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
@@ -642,7 +643,7 @@ defaults write com.twitter.twitter-mac ESCClosesComposeWindow -bool true
 defaults write com.twitter.twitter-mac ShowFullNames -bool true
 
 # Hide the app in the background if it’s not the front-most window
-defaults write com.twitter.twitter-mac HideInBackground -bool true
+#defaults write com.twitter.twitter-mac HideInBackground -bool true
 
 ###############################################################################
 # Kill affected applications                                                  #
