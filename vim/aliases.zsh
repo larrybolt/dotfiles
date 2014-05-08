@@ -8,3 +8,5 @@ elif [ -e "$HOME/Applications/MacVim.app" ]; then
 	alias vim='~/Applications/MacVim.app/Contents/MacOS/Vim'
     alias mvim='$DOTS/vim/mvim'
 fi
+
+export EDITOR=vim

@@ -2,7 +2,7 @@
 #
 # Vim
 #
-# This installs spf13-vim : Steve Francia's Vim Distribution
+# This installs NeoBundle for mac
 
 cd $HOME
-curl https://j.mp/spf13-vim3 -L > spf13-vim.sh && sh spf13-vim.sh
+curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh

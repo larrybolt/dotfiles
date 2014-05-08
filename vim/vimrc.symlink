@@ -1,0 +1,52 @@
+let g:dotvim_settings = {}
+let g:dotvim_settings.version = 1
+
+source ~/.vimrc.init
+
+if has("gui_running")
+  set guifont=Sauce_Code_Powerline:h14
+  "set guifont=Anonymice_Powerline:h15
+  set guioptions-=r
+  set guioptions-=L
+  set lines=999 columns=999
+  "set fullscreen
+  set fuoptions=maxvert,maxhorz
+colorscheme solarized
+endif
+
+"Use <CR> to select blocks in normal mode
+NeoBundle 'gcmt/wildfire.vim'
+
+"Keep track of how I spend my vim-time!
+NeoBundle 'wakatime/vim-wakatime'
+
+"Project specific vimrc
+NeoBundle 'embear/vim-localvimrc'
+
+"sane ansible
+NeoBundle 'chase/vim-ansible-yaml'
+
+"coffeescript highlighting
+NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload':{'filetypes':['coffee']}}
+
+"golang highlighting
+NeoBundleLazy 'jnwhiteh/vim-golang', {'autoload':{'filetypes':['go']}}
+
+" arduino
+NeoBundleLazy 'sudar/vim-arduino-syntax', {'autoload':{'filetypes':['pde', 'ino']}}
+NeoBundleLazy 'jplaut/vim-arduino-ino', {'autoload':{'filetypes':['pde', 'ino']}}
+
+" Autosave files when VIM looses focus
+au FocusLost * silent! wa
+
+" I don't use ; anyways!
+nnoremap  ;  :
+
+" NERDTreeToggle using <c-e>
+nnoremap <C-e> :NERDTreeToggle<CR>
+
+" gist-vim, work!
+let g:gist_clip_command = 'pbcopy'
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
+

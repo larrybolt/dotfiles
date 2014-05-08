@@ -1,5 +1,0 @@
-if has("gui_running")
-    let g:airline_powerline_fonts=1
-else
-    let g:airline_powerline_fonts=0
-endif
