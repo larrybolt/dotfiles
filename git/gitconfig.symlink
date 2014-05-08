@@ -25,6 +25,7 @@
     sync = !legit sync \"$@\"
     publish = !legit publish \"$@\"
     graft = !legit graft \"$@\"
+	up = "!git remote update -p; git merge --ff-only @{u}"
 [color]
     diff = auto
     status = auto
@@ -32,7 +33,7 @@
     ui = true
 [core]
     excludesfile = ~/.gitignore
-    editor = vim
+    editor = "/Applications/MacVim.app/Contents/MacOS/Vim"
 [apply]
     whitespace = nowarn
 [help]
@@ -58,3 +59,8 @@
 [merge]
 	tool = Kaleidoscope
 	ff = 0
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[github]
+	user = larrybolt
