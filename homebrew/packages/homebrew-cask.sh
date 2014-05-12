@@ -54,6 +54,7 @@ installcask cakebrew
 installcask multibit
 installcask multidoge
 
+installcask RCDefaultApp
 
 # Update Alfred links
 brew cask alfred link
