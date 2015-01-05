@@ -1,0 +1,6 @@
+[submodule "bin/sshrc"]
+	path = submodule/sshrc
+	url = https://github.com/Russell91/sshrc.git
+[submodule "submodules/sack"]
+	path = submodules/sack
+	url = https://github.com/sampson-chen/sack
