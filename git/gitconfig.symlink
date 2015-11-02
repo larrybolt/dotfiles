@@ -33,7 +33,8 @@
     ui = true
 [core]
     excludesfile = ~/.gitignore
-    editor = "/Applications/MacVim.app/Contents/MacOS/Vim"
+    # use default editor
+    #editor = "vim"
 [apply]
     whitespace = nowarn
 [help]

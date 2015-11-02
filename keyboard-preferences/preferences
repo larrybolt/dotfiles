@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# xcape required,
+# xset/setxkbmap are part of xorg
+# 
+# xcape is required for different behaviour of 
+# keys when combined or pressed by their own
+
+# typematic delay to 200ms and a typematic rate to 30Hz
+xset r rate 200 20
+
+# swap alt and win
+setxkbmap -option altwin:swap_alt_win
+
+# caps sucks, make it ctrl
+setxkbmap -option caps:ctrl_modifier
+# and escape when tapped
+xcape -e '#66=Escape'
+
+# left/right shift result in matching parenthesis when tapping
+xcape -e 'Shift_L=Shift_L|9'
+xcape -e 'Shift_R=Shift_L|0'

@@ -5,7 +5,8 @@ export ZSH=$HOME/.oh-my-zsh
 export DOTS=$HOME/.dotfiles
 
 # Set name of the theme to load.
-ZSH_THEME="apple"
+#ZSH_THEME="apple"
+ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -25,13 +26,17 @@ ZSH_THEME="apple"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(git brew autojump common-aliases dirhistory npm osx per-directory-history wd svn)
+#plugins=(git common-aliases dirhistory npm per-directory-history wd svn)
+plugins=(git)
 
-source $HOME/.zprofile
+
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+#source $HOME/.zprofile
 source $ZSH/oh-my-zsh.sh
 
 # load own theme
-source $DOTS/zsh/larrybolt-theme.zsh-theme
+#source $DOTS/zsh/larrybolt-theme.zsh-theme
 
 # all of our own zsh files
 typeset -U config_files
@@ -40,6 +45,7 @@ config_files=($DOTS/**/*.zsh)
 # load everything but the path and completion files
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
 do
+  echo " -> loading file $file"
   source $file
 done
 
@@ -53,19 +59,19 @@ then
 fi
 
 # User configuration
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:$DOTS/bin:$PATH"
+#export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:$DOTS/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
-export PATH="$PATH:/Applications/Wine.app/Contents/Resources/bin"
+#export PATH="$PATH:/Applications/Wine.app/Contents/Resources/bin"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='mvim'
-fi
+#if [[ -n $SSH_CONNECTION ]]; then
+#  export EDITOR='vim'
+#else
+#  export EDITOR='mvim'
+#fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -73,8 +79,8 @@ fi
 # ssh
 export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-PERL_MB_OPT="--install_base \"/Users/larrybolt/.perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/larrybolt/.perl5"; export PERL_MM_OPT;
+#PERL_MB_OPT="--install_base \"/Users/larrybolt/.perl5\""; export PERL_MB_OPT;
+#PERL_MM_OPT="INSTALL_BASE=/Users/larrybolt/.perl5"; export PERL_MM_OPT;
 
 # Allow to ctrl-z in zsh to get last pauzed program back
 fancy-ctrl-z () {
@@ -89,5 +95,5 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
-export N_PREFIX="$HOME/.n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
-source $HOME/.zprofile
+#export N_PREFIX="$HOME/.n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+#source $HOME/.zprofile
