@@ -1,52 +1,266 @@
-let g:dotvim_settings = {}
-let g:dotvim_settings.version = 1
+" Docs for own reference
+"				                                 Normal  Visual+Select  Operator-pending
+":map   :noremap   :unmap   :mapclear	   yes	   yes		        yes
+":nmap  :nnoremap  :nunmap  :nmapclear	 yes	    -		           -
+":vmap  :vnoremap  :vunmap  :vmapclear	  -	     yes		         -
+":omap  :onoremap  :ounmap  :omapclear	  -	      -		          yes
 
-source ~/.vimrc.init
 
-if has("gui_running")
-  set guifont=Sauce_Code_Powerline:h14
-  "set guifont=Anonymice_Powerline:h15
-  set guioptions-=r
-  set guioptions-=L
-  set lines=999 columns=999
-  "set fullscreen
-  set fuoptions=maxvert,maxhorz
-colorscheme solarized
+" Note: Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
+
+if has('vim_starting')
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
+
+  " Required:
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-"Use <CR> to select blocks in normal mode
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Let plugins perform sync stuff
+NeoBundle 'Shougo/vimproc.vim', {
+      \ 'build' : {
+      \     'windows' : 'tools\\update-dll-mingw',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'linux' : 'make',
+      \     'unix' : 'gmake',
+      \    },
+      \ }
+
+" Remove visual gui stuff
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+
+" Relative numbers
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+au FocusLost * :set number
+au FocusGained * :set relativenumber
+
+nnoremap <C-n> :call NumberToggle()<cr>
+
+" Let vim use my login shell (for env stuff)
+set shell=zsh\ -l
+
+" Git stuff
+NeoBundle 'tpope/vim-fugitive'
+nmap <Leader>gd :Gdiff
+nmap <Leader>gs :Gstatus
+nmap <Leader>gc :Gcommit
+
+NeoBundle 'airblade/vim-gitgutter'
+
+" Comment op commits using :GHComment
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'mmozuras/vim-github-comment'
+let g:github_user = 'larrybolt'
+
+" Makefiles need hard tabs!
+autocmd FileType make setlocal noexpandtab
+
+" Invisible characters suck sometimes
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+
+" auto remove trailing whitespaces
+autocmd BufWritePre * :%s/\s\+$//e
+
+" Readline key bindings
+NeoBundle 'tpope/vim-rsi'
+
+" Be smart about indentation
+NeoBundle 'tpope/vim-sleuth'
+
+" Fuzzy file finder
+NeoBundle 'ctrlpvim/ctrlp.vim'
+
+" use ctrlp for vim's gf
+map gf yw:CtrlP<CR><C-\>r"
+
+" leader-w is quicker
+nnoremap <Leader>w :w<CR>
+
+" use leader-leader for visual line mode
+nmap <Leader><Leader> V
+
+" keep expanding selection with v
+NeoBundle 'terryma/vim-expand-region'
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+" Vim colorschemes!
+NeoBundle 'flazz/vim-colorschemes'
+
+" nerdtree as a project drawler
+NeoBundle 'scrooloose/nerdtree'
+map <C-e> :NERDTreeToggle<CR>
+
+" Vim and tmux should play nice together
+NeoBundle 'christoomey/vim-tmux-navigator'
+
+" quoting/parenthesizing made simpler
+NeoBundle 'tpope/vim-surround'
+
+" Dash.app integration
+NeoBundle 'rizzatti/dash.vim'
+map <Leader>d yw:Dash<CR>
+
+" Wicked airline
+NeoBundle 'bling/vim-airline'
+let g:airline#extensions#tabline#enabled = 1
+set laststatus=2
+
+" make plugin commands repeatable
+NeoBundle 'tpope/vim-repeat'
+
+" autocompletion
+NeoBundle 'Shougo/neocomplete.vim'
+let g:neocomplete#enable_at_startup = 1
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" quickly select text objects
 NeoBundle 'gcmt/wildfire.vim'
 
-"Keep track of how I spend my vim-time!
+" easymotion, quickly jump to text
+NeoBundle 'Lokaltog/vim-easymotion'
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+nmap <Leader>f <Plug>(easymotion-s2)
+nmap <Leader>t <Plug>(easymotion-t2)
+
+" commend stuff out
+NeoBundle 'tpope/vim-commentary'
+
+" use ag in vim
+NeoBundle 'rking/ag.vim'
+
+" Undo history
+NeoBundle 'sjl/gundo.vim'
+
+" project-wise vimrc
+NeoBundle 'MarcWeber/vim-addon-local-vimrc'
+let g:localvimrc_name=".vimrc"
+
+" vim language packs
+NeoBundle 'sheerun/vim-polyglot'
+
+" elm-lang
+" NeoBundle 'lambdatoast/elm.vim'
+
+" track all my time!
 NeoBundle 'wakatime/vim-wakatime'
 
-"Project specific vimrc
-NeoBundle 'embear/vim-localvimrc'
+" phpunit
+NeoBundle 'joonty/vim-phpqa'
 
-"sane ansible
-NeoBundle 'chase/vim-ansible-yaml'
+" php xdebug
+NeoBundle 'joonty/vdebug'
 
-"coffeescript highlighting
-NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload':{'filetypes':['coffee']}}
+" Vim snippets
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
 
-"golang highlighting
-NeoBundleLazy 'jnwhiteh/vim-golang', {'autoload':{'filetypes':['go']}}
+call neobundle#end()
 
-" arduino
-NeoBundleLazy 'sudar/vim-arduino-syntax', {'autoload':{'filetypes':['pde', 'ino']}}
-NeoBundleLazy 'jplaut/vim-arduino-ino', {'autoload':{'filetypes':['pde', 'ino']}}
+" leader is a key that allows you to have your own "namespace" of keybindings.
+" You'll see it a lot below as <leader>
+let mapleader = " "
 
-" Autosave files when VIM looses focus
-au FocusLost * silent! wa
+syntax enable
+set encoding=utf-8
+set showcmd                     " display incomplete commands
+filetype plugin indent on       " load file type plugins + indentation
 
-" I don't use ; anyways!
-nnoremap  ;  :
+" colorscheme and color-related stuff
+" colorscheme solarized
+colorscheme codeblocks_dark
+highlight Cursor guifg=green guibg=red
+set guifont=Sauce\ Code\ Powerline:h16
 
-" NERDTreeToggle using <c-e>
-nnoremap <C-e> :NERDTreeToggle<CR>
+" We have VCS -- we don't need this stuff.
+" Yes we do!
+" set nobackup
+" set nowritebackup
+set backupdir=/Users/larrybolt/.vim/backups
+set noswapfile
 
-" gist-vim, work!
-let g:gist_clip_command = 'pbcopy'
-let g:gist_detect_filetype = 1
-let g:gist_open_browser_after_post = 1
+" don't nag me when hiding buffers
+set hidden   " allow me to have buffers with unsaved changes.
+set autoread " when a file has changed on disk, just load it. Don't ask.
 
+" Whitespace
+set nowrap                      " don't wrap lines
+set tabstop=2 shiftwidth=2      " a tab is two spaces (or set this to 4)
+set expandtab                   " use spaces, not tabs (optional)
+set backspace=indent,eol,start  " backspace through everything in insert mode
+
+" Searching
+set hlsearch                    " highlight matches
+set incsearch                   " incremental searching
+set ignorecase                  " searches are case insensitive...
+set smartcase                   " ... unless they contain at least one capital letter
+set showmatch                   " live match highlighting
+
+" allow the cursor to go anywhere in visual block mode.
+set virtualedit+=block
+
+" Clear match highlighting
+noremap <leader>/ :noh<cr>:call clearmatches()<cr>
+
+" Autosave files on unfocus
+:au FocusLost * silent! wa
+
+" reload vimrc when editing vimrc
+augroup reload_vimrc " {
+  autocmd!
+  autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }
+" use <leader>e to edit vimrc
+noremap <leader>e :e ~/.vimrc<cr>
+
+
+" use f5 to toggle paste mode
+set pastetoggle=<f5>
+
+" bindings for easy split nav
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+
+" vim use mac clipboard
+set clipboard=unnamed
+
+" max width http://stackoverflow.com/q/4651012/4651037
+set colorcolumn=80
+
+" screw ex mode, use Q for running macro on q
+nnoremap Q @q
+
+" Save current file as sudo https://stackoverflow.com/q/2600783/7078429
+cmap w!! w !sudo tee > /dev/null %
