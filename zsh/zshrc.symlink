@@ -27,7 +27,7 @@ ZSH_THEME="robbyrussell"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 #plugins=(git common-aliases dirhistory npm per-directory-history wd svn)
-plugins=(git)
+plugins=(git wd svn)
 
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
@@ -45,7 +45,7 @@ config_files=($DOTS/**/*.zsh)
 # load everything but the path and completion files
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
 do
-  echo " -> loading file $file"
+  #echo " -> loading file $file"
   source $file
 done
 
