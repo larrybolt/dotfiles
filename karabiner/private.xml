@@ -20,6 +20,21 @@
         </autogen>
     </item>
     <item>
+        <name>Remap SPACE to Hyper.</name>
+        <appendix>OS X doesn't have a Hyper. This maps space to Control + Shift + Option + Command unless pressed alone.</appendix>
+
+        <identifier>private.space_to_hyper</identifier>
+
+        <autogen>
+            __KeyOverlaidModifier__
+            KeyCode::SPACE,
+
+            KeyCode::COMMAND_L,
+            ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L,
+            KeyCode::SPACE
+        </autogen>
+    </item>
+    <item>
         <name>Remap Alt to Control in Emacs</name>
         <appendix>Fuck you non-standard Apple Keyboard layout, map Right Alt to Control in Emacs</appendix>
 
