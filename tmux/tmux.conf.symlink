@@ -135,5 +135,6 @@ new-session -n $HOST
 set -g @tpm_plugins "           \
   tmux-plugins/tpm              \
   tmux-plugins/tmux-resurrect   \
+  tmux-plugins/tmux-continuum   \
 "
 run-shell ~/.tmux/plugins/tpm/tpm
