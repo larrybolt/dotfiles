@@ -15,4 +15,6 @@
     #command rbenv "$command" "$@";;
   #esac
 #}
+
+export PATH="$PATH:$HOME/.rbenv/bin"
 eval "$(rbenv init -)"
