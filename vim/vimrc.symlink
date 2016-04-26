@@ -169,7 +169,7 @@ NeoBundle 'sheerun/vim-polyglot'
 NeoBundle 'wakatime/vim-wakatime'
 
 " phpunit
-NeoBundle 'joonty/vim-phpqa'
+"NeoBundle 'joonty/vim-phpqa'
 
 " php xdebug
 NeoBundle 'joonty/vdebug'

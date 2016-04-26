@@ -1,1 +1,1 @@
-test $TMUX || tmux attach
+#test $TMUX || tmux attach

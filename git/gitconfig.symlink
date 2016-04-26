@@ -16,6 +16,8 @@
     rank-contributers = !$DOTS/bin/git-rank-contributers
     count   = !git shortlog -sn
     root    = !exec git-root
+    # Add to Index but ignore whitespace changes
+    addnws  = !sh -c 'git diff -w --no-color "$@" | git apply --cached --ignore-whitespace' -
 
     switch = !legit switch \"$@\"
     branches = !legit branches
@@ -26,6 +28,7 @@
     publish = !legit publish \"$@\"
     graft = !legit graft \"$@\"
 	up = "!git remote update -p; git merge --ff-only @{u}"
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [color]
     diff = auto
     status = auto
