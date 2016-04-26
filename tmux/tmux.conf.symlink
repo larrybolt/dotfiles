@@ -134,6 +134,7 @@ new-session -n $HOST
 # tmux-resurrect, restore tmux environment after reboot
 set -g @tpm_plugins "           \
   tmux-plugins/tpm              \
+  tmux-plugins/tmux-yank        \
   tmux-plugins/tmux-resurrect   \
   tmux-plugins/tmux-continuum   \
 "

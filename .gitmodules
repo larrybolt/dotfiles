@@ -4,3 +4,6 @@
 [submodule "submodules/sack"]
 	path = submodules/sack
 	url = https://github.com/sampson-chen/sack
+[submodule "spacemacs/spacemacs-logo"]
+	path = spacemacs/spacemacs-logo
+	url = https://github.com/nashamri/spacemacs-logo
