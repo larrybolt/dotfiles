@@ -202,7 +202,7 @@ set guifont=Sauce\ Code\ Powerline:h16
 " Yes we do!
 " set nobackup
 " set nowritebackup
-set backupdir=/Users/larrybolt/.vim/backups
+set backupdir=$HOME/.vim/backups
 set noswapfile
 
 " don't nag me when hiding buffers

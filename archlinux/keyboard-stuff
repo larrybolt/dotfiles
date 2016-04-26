@@ -1,0 +1,7 @@
+xset r rate 200 20
+setxkbmap -option altwin:swap_alt_win
+setxkbmap -option caps:ctrl_modifier
+killall xcape
+xcape -e '#66=Escape'
+xcape -e 'Shift_L=Shift_L|9'
+xcape -e 'Shift_R=Shift_L|0'
