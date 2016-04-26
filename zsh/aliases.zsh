@@ -1,8 +1,17 @@
+# config wise
 alias reload='. ~/.zshrc'
-alias smtp-server='sudo python -m smtpd -n -c DebuggingServer localhost:25'
-alias cdw='cd $HOME/web/Projects'
-alias pinguntilback='until ping -W1 -c1 8.8.8.8; do sleep 5; done && say the internet is back'
 alias dotfiles="$EDITOR $DOTS"
+
+# directory navigation
+mkcd ()
+{
+  mkdir -p -- "$1" &&
+    cd -P -- "$1"
+}
+
+# usefull
+alias smtp-server='sudo python -m smtpd -n -c DebuggingServer localhost:25'
+alias pinguntilback='until ping -W1 -c1 8.8.8.8; do sleep 5; done && say the internet is back'
 
 # update all
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; npm update -g; sudo gem update --system; sudo gem update'
@@ -28,3 +37,10 @@ command -v sha1sum > /dev/null || alias sha1sum="shasum"
 
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | pbcopy"
+
+hr() {
+  setopt promptsubst
+  PS1=$'%{\e(0%}${(r:$COLUMNS::q:)}%{\e(B%}'$PS1
+}
+
+alias msgdone="osascript -e 'display notification \"DONE\" with title \"DONE\"'"

@@ -27,7 +27,7 @@ ZSH_THEME="robbyrussell"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 #plugins=(git common-aliases dirhistory npm per-directory-history wd svn)
-plugins=(git wd svn)
+plugins=(git common-aliases osx wd svn)
 
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
@@ -38,10 +38,19 @@ source $ZSH/oh-my-zsh.sh
 # load own theme
 #source $DOTS/zsh/larrybolt-theme.zsh-theme
 
+
+# all of our own zsh files
+typeset -U path_files
+path_files=($DOTS/**/path.zsh)
+for file in ${path_files}
+do
+  #echo " -> path: loading file $file"
+  source $file
+done
+
 # all of our own zsh files
 typeset -U config_files
 config_files=($DOTS/**/*.zsh)
-
 # load everything but the path and completion files
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
 do
@@ -95,5 +104,8 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
-#export N_PREFIX="$HOME/.n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+# direnv
+eval "$(direnv hook zsh)"
+
+
 #source $HOME/.zprofile

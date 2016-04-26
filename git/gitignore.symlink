@@ -49,6 +49,10 @@ dwsync.xml
 *.un~
 Session.vim
 .netrwhist
+.idea
+.vimrc
+*#*#
+
 
 # Windows
 Thumbs.db
@@ -103,3 +107,5 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 .project
+
+.tern-port
